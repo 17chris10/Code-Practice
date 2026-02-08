@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head><title>Car Object</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  let car = { brand: "Toyota", model: "Corolla" };
+  car.year = 2022;
+  car.model = "Camry";
+  delete car.year;
+  document.getElementById("result").innerHTML = "Car: " + car.brand + " " + car.model;
+</script>
+</body>
+</html>

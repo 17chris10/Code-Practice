@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    int i, j, n, chk = 0, num = 0;
+    
+    printf("Enter total count of no.s:");
+    scanf("%d",&n);
+    int a[n];
+    printf("Enter %d no.s", n);
+    for(i=0;i<n;i++)
+        scanf("%d",&a[i]);
+    for(j=1;j<n;j++)
+    {
+        for(i=0;i<j;i++)
+        {
+            if(a[j] == a[i]) 
+            {
+                num = a[j];  
+                chk = 1;     
+                break;      
+            }
+        }
+    
+        if(chk==1)
+        {
+            break; 
+        }
+    }
+
+    if(chk == 1) {
+        printf("First repeating no. = %d\n", num);
+    } else {
+        printf("No repeating no. found.\n");
+    }
+
+    return 0;
+}

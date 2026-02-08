@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callback Function Example</title>
+</head>
+<body>
+  <h1>Callback Function Example</h1>
+  <p>Open your browser console to see the output.</p>
+
+  <script>
+    // Function that accepts an array and a callback function
+    function processNumbers(numbers, callback) {
+      for (let number of numbers) {
+        callback(number);
+      }
+    }
+
+    // Example callback function
+    function logDouble(num) {
+      console.log(`Double of ${num} is ${num * 2}`);
+    }
+
+    // Example usage
+    const nums = [1, 2, 3, 4, 5];
+    processNumbers(nums, logDouble);
+  </script>
+</body>
+</html>

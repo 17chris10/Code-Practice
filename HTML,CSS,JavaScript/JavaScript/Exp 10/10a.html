@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Student Object</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  let student = { name: "John", age: 20, course: "CS" };
+  let text = student.name + " " + student.age + " " + student.course + "<br>";
+  text += student["name"] + " " + student["age"] + " " + student["course"];
+  document.getElementById("result").innerHTML = text;
+</script>
+</body>
+</html>

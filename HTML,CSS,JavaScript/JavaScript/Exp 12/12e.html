@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Factorial</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  function factorial(n) {
+    let fact = 1;
+    for (let i = 1; i <= n; i++) fact *= i;
+    return fact;
+  }
+  document.getElementById("result").innerHTML = "Factorial of 5 = " + factorial(5);
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP 16 – DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+            background: #f5f7fa;
+        }
+        h2 {
+            text-align: center;
+        }
+        #itemList li {
+            padding: 6px;
+            background: #fff;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 2px 3px rgba(0,0,0,0.1);
+        }
+        #carousel {
+            text-align: center;
+            margin-top: 20px;
+        }
+        img {
+            border-radius: 10px;
+        }
+        button {
+            margin: 5px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #007bff;
+            color: #fff;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>EXP 16 – DOM Manipulation</h2>
+    <button id="addItemBtn">Add Item</button>
+    <ul id="itemList"></ul>
+    <div id="carousel">
+        <img id="carouselImage" src="https://picsum.photos/400/200?1" width="400" alt="Carousel Image">
+        <br>
+        <button id="prevBtn">⟨ Prev</button>
+        <button id="nextBtn">Next ⟩</button>
+        <button id="autoBtn">Start Auto</button>
+    </div>
+
+    <script>
+        const list = document.getElementById('itemList');
+        const addItemBtn = document.getElementById('addItemBtn');
+        const imgs = [
+            'https://picsum.photos/400/200?1',
+            'https://picsum.photos/400/200?2',
+            'https://picsum.photos/400/200?3'
+        ];
+        let idx = 0;
+        let auto = false;
+        let intv;
+        const img = document.getElementById('carouselImage');
+        const autoBtn = document.getElementById('autoBtn');
+
+        function show(i) {
+            img.src = imgs[i];
+        }
+
+        addItemBtn.onclick = () => {
+            const li = document.createElement('li');
+            li.textContent = `Item ${list.children.length + 1}`;
+            li.onclick = () => li.style.color = 'blue';
+            list.appendChild(li);
+        };
+
+        document.getElementById('prevBtn').onclick = () => {
+            idx = (idx - 1 + imgs.length) % imgs.length;
+            show(idx);
+        };
+
+        document.getElementById('nextBtn').onclick = () => {
+            idx = (idx + 1) % imgs.length;
+            show(idx);
+        };
+
+        autoBtn.onclick = () => {
+            auto = !auto;
+            if (auto) {
+                intv = setInterval(() => {
+                    idx = (idx + 1) % imgs.length;
+                    show(idx);
+                }, 2000);
+                autoBtn.textContent = 'Stop Auto';
+            } else {
+                clearInterval(intv);
+                autoBtn.textContent = 'Start Auto';
+            }
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Default Parameter</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  function multiply(a, b = 2) {
+    return a * b;
+  }
+  document.getElementById("result").innerHTML = 
+    "Multiply 5 with default (2): " + multiply(5) + "<br>" +
+    "Multiply 5 and 3: " + multiply(5, 3);
+</script>
+</body>
+</html>

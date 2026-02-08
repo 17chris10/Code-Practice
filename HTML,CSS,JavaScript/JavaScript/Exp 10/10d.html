@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head><title>Person Object</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  let person = { name: "Alice", age: 25, city: "New York" };
+  let output = "";
+  for (let key in person) {
+    output += key + ": " + person[key] + "<br>";
+  }
+  document.getElementById("result").innerHTML = output;
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Person Prototype Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .output {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      min-height: 50px;
+    }
+
+    .intro {
+      background-color: #e3f2fd;
+      border-left: 4px solid #007bff;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>👤 Person Prototype Example</h1>
+  <div class="container">
+    <h3>Create a Person</h3>
+    <input type="text" id="nameInput" placeholder="Enter name">
+    <input type="number" id="ageInput" placeholder="Enter age">
+    <button id="createBtn">Create & Introduce</button>
+
+    <h3>Introductions</h3>
+    <div class="output" id="outputArea"></div>
+  </div>
+
+  <script>
+    // ----------------------------
+    // Person Prototype Definition
+    // ----------------------------
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    // Adding method to prototype
+    Person.prototype.introduce = function() {
+      return `Hi, I'm ${this.name} and I'm ${this.age} years old.`;
+    };
+
+    // ----------------------------
+    // DOM Interaction
+    // ----------------------------
+    const outputArea = document.getElementById('outputArea');
+
+    document.getElementById('createBtn').addEventListener('click', () => {
+      const name = document.getElementById('nameInput').value.trim();
+      const age = document.getElementById('ageInput').value.trim();
+
+      if (!name || !age) {
+        alert('Please enter both name and age!');
+        return;
+      }
+
+      const person = new Person(name, age);
+      const intro = person.introduce();
+
+      const div = document.createElement('div');
+      div.classList.add('intro');
+      div.textContent = intro;
+      outputArea.appendChild(div);
+
+      // Clear input fields
+      document.getElementById('nameInput').value = '';
+      document.getElementById('ageInput').value = '';
+    });
+  </script>
+
+</body>
+</html>

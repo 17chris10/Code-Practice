@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Search Number</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  let numbers = [3, 8, 15, 22, 29];
+  let searchNum = 22;
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] === searchNum) {
+      document.getElementById("result").innerHTML = searchNum + " found at index " + i;
+      break;
+    }
+  }
+</script>
+</body>
+</html>

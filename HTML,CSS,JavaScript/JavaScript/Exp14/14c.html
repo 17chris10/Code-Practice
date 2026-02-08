@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shape Inheritance Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f3f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 420px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1em;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .output {
+      margin-top: 15px;
+      padding: 10px;
+      border-radius: 5px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      min-height: 50px;
+    }
+
+    .shape {
+      margin: 5px 0;
+      padding: 8px;
+      border-left: 4px solid #28a745;
+      background-color: #e9f7ef;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎨 Shape Inheritance Example</h1>
+  <div class="container">
+    <h3>Create a Shape</h3>
+
+    <input type="text" id="shapeName" placeholder="Enter shape name (e.g., MyCircle)">
+    <input type="text" id="colorInput" placeholder="Enter color (e.g., Red)">
+    <select id="shapeType">
+      <option value="Circle">Circle</option>
+      <option value="Square">Square</option>
+    </select>
+    <button id="createBtn">Create & Draw</button>
+
+    <h3>Drawing Output</h3>
+    <div class="output" id="outputArea"></div>
+  </div>
+
+  <script>
+    // ----------------------------
+    // Parent Class: Shape
+    // ----------------------------
+    class Shape {
+      constructor(name, color) {
+        this.name = name;
+        this.color = color;
+      }
+
+      draw() {
+        return `Drawing a generic shape named ${this.name} with color ${this.color}.`;
+      }
+    }
+
+    // ----------------------------
+    // Child Class: Circle
+    // ----------------------------
+    class Circle extends Shape {
+      constructor(name, color) {
+        super(name, color); // Call parent constructor
+      }
+
+      draw() {
+        return `🟢 Drawing a Circle named ${this.name} with color ${this.color}.`;
+      }
+    }
+
+    // ----------------------------
+    // Child Class: Square
+    // ----------------------------
+    class Square extends Shape {
+      constructor(name, color) {
+        super(name, color);
+      }
+
+      draw() {
+        return `🟥 Drawing a Square named ${this.name} with color ${this.color}.`;
+      }
+    }
+
+    // ----------------------------
+    // DOM Interaction
+    // ----------------------------
+    const outputArea = document.getElementById('outputArea');
+
+    document.getElementById('createBtn').addEventListener('click', () => {
+      const name = document.getElementById('shapeName').value.trim();
+      const color = document.getElementById('colorInput').value.trim();
+      const type = document.getElementById('shapeType').value;
+
+      if (!name || !color) {
+        alert('Please enter both a name and color!');
+        return;
+      }
+
+      let shape;
+      if (type === 'Circle') {
+        shape = new Circle(name, color);
+      } else if (type === 'Square') {
+        shape = new Square(name, color);
+      } else {
+        shape = new Shape(name, color);
+      }
+
+      const div = document.createElement('div');
+      div.classList.add('shape');
+      div.textContent = shape.draw();
+      outputArea.appendChild(div);
+
+      // Clear inputs
+      document.getElementById('shapeName').value = '';
+      document.getElementById('colorInput').value = '';
+    });
+  </script>
+</body>
+</html>

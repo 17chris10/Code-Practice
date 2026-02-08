@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXP 15 – To-Do List App</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 30px;
+            background: #f8f9fa;
+        }
+        h2 {
+            text-align: center;
+        }
+        input, select, button {
+            padding: 8px;
+            margin: 5px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h2>EXP 15 – Task Manager</h2>
+    <div>
+        <input type="text" id="taskInput" placeholder="Enter your task">
+        <select id="prioritySelect">
+            <option>High</option>
+            <option selected>Medium</option>
+            <option>Low</option>
+        </select>
+        <button id="addBtn">Add</button>
+    </div>
+    <div>
+        <label>Filter:</label>
+        <select id="filterSelect">
+            <option>All</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+        </select>
+    </div>
+    <ul id="taskList"></ul>
+
+    <script>
+        const taskInput = document.getElementById('taskInput');
+        const addBtn = document.getElementById('addBtn');
+        const taskList = document.getElementById('taskList');
+        const prioritySelect = document.getElementById('prioritySelect');
+        const filterSelect = document.getElementById('filterSelect');
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+        function save() {
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function render() {
+            taskList.innerHTML = '';
+            const f = filterSelect.value;
+            tasks.filter(t => f === 'All' || t.priority === f)
+                .forEach((t, i) => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <span style="text-decoration:${t.completed ? 'line-through' : 'none'}">
+                            ${t.text} (${t.priority})
+                        </span>
+                        <div>
+                            <button onclick="toggle(${i})">${t.completed ? 'Undo' : 'Done'}</button>
+                            <button onclick="edit(${i})">Edit</button>
+                            <button onclick="del(${i})">Del</button>
+                        </div>`;
+                    taskList.appendChild(li);
+                });
+        }
+
+        function add() {
+            const text = taskInput.value.trim();
+            if (!text) return alert("Enter task!");
+            tasks.push({
+                text,
+                priority: prioritySelect.value,
+                completed: false
+            });
+            save();
+            render();
+            taskInput.value = '';
+        }
+
+        function toggle(i) {
+            tasks[i].completed = !tasks[i].completed;
+            save();
+            render();
+        }
+
+        function del(i) {
+            tasks.splice(i, 1);
+            save();
+            render();
+        }
+
+        function edit(i) {
+            const newText = prompt("Edit task", tasks[i].text);
+            if (newText) {
+                tasks[i].text = newText;
+                save();
+                render();
+            }
+        }
+
+        addBtn.onclick = add;
+        filterSelect.onchange = render;
+        render();
+    </script>
+</body>
+</html>

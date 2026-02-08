@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+int main() {
+    int i, n, min = 0, max = 0;
+    printf("Enter no. of array elements: ");
+    scanf("%d", &n);
+    int a[n];
+    printf("Enter %d no.s: ", n);
+    for (i = 0; i < n; i++) {
+        scanf("%d", &a[i]);
+    }
+
+    // Initialize min and max with the first element
+    if (n > 0) {
+        min = a[0];
+        max = a[0];
+    }
+
+    for (i = 1; i < n; i++) {
+        if (a[i] < min) {
+            min = a[i];
+        } else if (a[i] > max) { // Should be 'else if' to avoid unnecessary assignment
+            max = a[i];
+        }
+    }
+
+    printf("Greatest no. = %d\n", max);
+    printf("Smallest no. = %d\n", min);
+
+    return 0;
+}

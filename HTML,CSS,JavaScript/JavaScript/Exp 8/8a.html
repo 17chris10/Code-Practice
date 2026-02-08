@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <title>Loops</title>
+    <body>
+        <p id="demo"></p>
+        <script>
+           let text = "";
+let n = 3; 
+            text += `<br><b>Multiplication table of ${n} (for loop):</b><br>`;
+            for (let j = 1; j <= 5; j++) {
+                text += `${n} * ${j} = ${n * j}<br>`;
+            }
+
+            document.getElementById("demo").innerHTML = text;
+        </script>
+    </body>
+</html>

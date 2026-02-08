@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <title>Loops</title>
+    <body>
+        <p id="demo"></p>
+        <script>
+            let text = "";
+
+            
+            text += "<br><b>While loop:</b><br>";
+            let i = 1;
+            while (i <= 50) {
+                
+                if(i % 2 === 0){
+                    text += i + "<br>";
+                }
+                i++;
+            }
+
+            
+            document.getElementById("demo").innerHTML = text;
+        </script>
+    </body>
+</html>

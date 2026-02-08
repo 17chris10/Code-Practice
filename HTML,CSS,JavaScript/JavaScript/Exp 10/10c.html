@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Calculator</title></head>
+<body>
+  <p id="result"></p>
+<script>
+  let calculator = {
+    a: 10,
+    b: 5,
+    add: function() { return this.a + this.b; },
+    subtract: function() { return this.a - this.b; },
+    multiply: function() { return this.a * this.b; }
+  };
+  let output = "Add: " + calculator.add() + "<br>";
+  output += "Subtract: " + calculator.subtract() + "<br>";
+  output += "Multiply: " + calculator.multiply();
+  document.getElementById("result").innerHTML = output;
+</script>
+</body>
+</html>

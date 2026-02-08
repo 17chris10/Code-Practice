@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <title>Reverse</title>
+    <body>
+        <p id="demo"></p>
+        <script src="reverse.js"></script>
+        <script>
+            let text = "";
+            function reverse(n)
+            {
+                let d;
+                let num=n;
+                let rev;
+                while(n>0)
+                {
+                    d=n%10;
+                    rev+=d+"<br>";
+                    n=Math.floor(n/10);
+                }
+                console.log("The reverse of "+num+" is "+rev);
+            }
+            let n=543;
+            reverse(n);
+            document.getElementById("demo").innerHTML = text;
+        </script>
+    </body>
