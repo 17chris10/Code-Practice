@@ -15,7 +15,6 @@ bool isBalanced(string& s) {
         
         else if (c == ')' || c == '}' || c == ']') {
             
-            // No opening bracket
             if (st.empty()) return false; 
             char top = st.top();
             if ((c == ')' && top != '(') ||
@@ -23,13 +22,11 @@ bool isBalanced(string& s) {
                 (c == ']' && top != '[')) {
                 return false;
             }
-            
-            // Pop matching opening bracket
+   
             st.pop(); 
         }
     }
     
-    // Balanced if stack is empty
     return st.empty(); 
 }
 
