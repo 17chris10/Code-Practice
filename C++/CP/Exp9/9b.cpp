@@ -1,60 +1,41 @@
-#include <bits/stdc++.h>
-using namespace std;
-template <typename T>
-class Stack {
+#include <iostream>
+#include <list>
+
+class MyStack {
+private:
+    std::list<int> data;
+
 public:
-    list<T> l;
-    int cs = 0;
-    void push(T d)
-    {
-        cs++;
-        l.push_front(d);
+    // Pushes an element onto the stack (top is the end of the list)
+    void push(int value) {
+        data.push_back(value);
     }
-    void pop()
-    {
-        if (cs <= 0) {
-            cout << "Stack empty" << endl;
-        }
-        else {
-            cs--;
-            l.pop_front();
+
+    // Removes the top element
+    void pop() {
+        if (!data.empty()) {
+            data.pop_back();
+        } else {
+            std::cout << "Stack is empty!" << std::endl;
         }
     }
-    bool empty() { return cs == 0; }
-    T top() 
-    { 
-        return l.front(); 
+
+    // Returns the top element
+    int top() {
+        return data.back();
     }
-    int size()
-    {
-        return cs;
-    } 
-    void print()
-    {
-        for (auto x: l) {
-            cout << x << endl;
-        }
+
+    bool isEmpty() {
+        return data.empty();
     }
 };
-int main()
-{
-    Stack<int> s;
+
+int main() {
+    MyStack s;
     s.push(10);
     s.push(20);
-    s.push(30);
-    s.push(40);
-    cout << "Current size : " << s.size()
-         << endl;
-    cout << "The top element of the stack is " << s.top()
-         << endl;
+    std::cout << "Top element: " << s.top() << std::endl; // Output: 20
     s.pop();
-    cout << "The top element after 1 pop operation is "
-         << s.top()
-         << endl;
-    s.pop();
-    cout << "The top element after 2 pop operations is "
-         << s.top() << endl;
-    cout << "Size of the stack after 2 pop operations is "
-         << s.size() << endl;
+    std::cout << "Top after pop: " << s.top() << std::endl; // Output: 10
     return 0;
 }
