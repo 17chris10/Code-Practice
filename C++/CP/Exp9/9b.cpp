@@ -1,26 +1,21 @@
 #include <iostream>
 #include <list>
-
+using namespace std;
 class MyStack {
 private:
-    std::list<int> data;
+    list<int> data;
 
 public:
-    // Pushes an element onto the stack (top is the end of the list)
     void push(int value) {
         data.push_back(value);
     }
-
-    // Removes the top element
     void pop() {
         if (!data.empty()) {
             data.pop_back();
         } else {
-            std::cout << "Stack is empty!" << std::endl;
+            cout << "Stack is empty!" << std::endl;
         }
     }
-
-    // Returns the top element
     int top() {
         return data.back();
     }
@@ -28,14 +23,22 @@ public:
     bool isEmpty() {
         return data.empty();
     }
+    void display() {
+        for (int value : data) {
+            cout << value << " ";
+        }
+        cout << endl;
+    }
 };
 
 int main() {
     MyStack s;
     s.push(10);
     s.push(20);
-    std::cout << "Top element: " << s.top() << std::endl; // Output: 20
+    cout<<"Current Stack: ";
+    s.display();
+    cout << "Top element: " << s.top() << endl; 
     s.pop();
-    std::cout << "Top after pop: " << s.top() << std::endl; // Output: 10
+    cout << "Top after pop: " << s.top() << endl; 
     return 0;
 }
