@@ -36,7 +36,7 @@ public:
     }
 };
 int main() {
-    myStack st(4);
+    Stack st(4);
     st.push(1);
     st.push(2);
     st.push(3);
