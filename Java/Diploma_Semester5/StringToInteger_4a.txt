@@ -1,0 +1,17 @@
+import java.util.*;
+
+public class StringToInteger {
+public static void main(String args[]) {
+String n;
+Scanner sc = new Scanner(System.in);
+System.out.print("Enter a no. : ");
+n = sc.next();
+
+Integer num = Integer.valueOf(n);
+System.out.println("Original string : " + n);
+System.out.println("Integer object : " + num);
+System.out.println("Primitive value : " + num.intValue());
+
+sc.close();
+}
+}
